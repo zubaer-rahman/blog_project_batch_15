@@ -24,7 +24,7 @@ use App\Http\Controllers\BlogController;
 
 Route::get('/', [ZenBlogController::class, 'index'])->name('home');
 Route::get('/post-detail/{slug}', [ZenBlogController::class, 'postDetail'])->name('post.detail');
-Route::get('/category', [ZenBlogController::class, 'category'])->name('category');
+Route::get('/blog-category', [ZenBlogController::class, 'blogCategory'])->name('blog.category');
 Route::get('/about', [ZenBlogController::class, 'about'])->name('about');
 Route::get('/contact', [ZenBlogController::class, 'contact'])->name('contact');
 
@@ -34,15 +34,17 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::post('/new-category', [CategoryController::class, 'saveCategory'])->name('new.category');
-    //Route::post('/manage-category', [CategoryController::class, 'manageCategory'])->name('manage.category');
+    Route::post('/delete-category', [CategoryController::class, 'deleteCategory'])->name('delete.category');
 
     Route::get('/author', [AuthorController::class, 'index'])->name('author');
     Route::post('/new-author', [AuthorController::class, 'saveAuthor'])->name('new.author');
-//    Route::post('/manage-author', [AuthorController::class, 'manageAuthor'])->name('manage.author');
+    Route::post('/edit-author', [AuthorController::class, 'editAuthor'])->name('edit.author');
+    Route::post('/update-author', [AuthorController::class, 'updateAuthor'])->name('update.author');
 
     Route::get('/add-blog', [ BlogController::class, 'index'])->name('add.blog');
     Route::post('/new-blog', [ BlogController::class, 'saveBlog'])->name('new.blog');
     Route::get('/manage-blog', [ BlogController::class, 'manageBlog'])->name('manage.blog');
+    Route::get('/edit-blog', [ BlogController::class, 'editBlog'])->name('edit.blog');
     Route::get('/status/{id}', [ BlogController::class, 'status'])->name('status');
     Route::post('/delete.blog', [ BlogController::class, 'deleteBlog'])->name('delete.blog');
 });

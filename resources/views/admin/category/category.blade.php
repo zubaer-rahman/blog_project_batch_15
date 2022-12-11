@@ -54,8 +54,14 @@
                                 <td>{{ $category->category_name }}</td>
                                 <td>{{ $category->status==1? 'published': 'unpublished' }}</td>
                                 <td>
-                                    <a href="" class="btn btn-primary btn-sm"> Edit </a>
-                                    <a href="" class="btn btn-danger btn-sm"> Delete </a>
+                                    <div class="d-flex">
+                                        <a href="" class="btn btn-primary btn-sm me-2"> Edit </a>
+                                        <form action="{{ route('delete.category') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="catId" value="{{$category->id}}">
+                                            <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

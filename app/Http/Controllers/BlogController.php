@@ -28,6 +28,9 @@ class BlogController extends Controller
                           ->get()
         ]);
     }
+    public function editBlog(){
+        return view('admin.blog.edit-blog');
+    }
     public function status($id){
         $blog = Blog::find($id);
         if($blog->status == 0){

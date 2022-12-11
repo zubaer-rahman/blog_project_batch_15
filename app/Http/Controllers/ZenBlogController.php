@@ -38,7 +38,7 @@ class ZenBlogController extends Controller
                 ->get()
         ]);
     }
-    public function category() {
+    public function blogCategory() {
         return view('frontEnd.category.category');
     }
     public function about() {

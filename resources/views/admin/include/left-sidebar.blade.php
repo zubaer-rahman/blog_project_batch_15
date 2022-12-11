@@ -56,7 +56,8 @@
                         <small class="mb-0">Some placeholder content</small>
                     </div>
                     <a href="{{ route('add.blog') }}" class="list-group-item"><i class="bi bi-envelope"></i>Add blog</a>
-                    <a href="{{ route('manage.blog') }}" class="list-group-item"><i class="bi bi-people"></i>Manage Blog</a>
+                    <a href="{{ route('manage.blog') }}" class="list-group-item"><i class="bi bi-gear"></i>Manage Blog</a>
+                    <a href="{{ route('edit.blog') }}" class="list-group-item"><i class="bi bi-pencil"></i>Edit Blog</a>
                 </div>
             </div>
         </div>

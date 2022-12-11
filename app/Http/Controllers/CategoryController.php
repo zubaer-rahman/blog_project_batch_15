@@ -14,5 +14,10 @@ class CategoryController extends Controller
         Category::saveCategory($request);
         return back();
     }
+    public function deleteCategory(Request $request){
+         Category::find($request->catId)->delete();
+         return back();
+    }
+
 
 }
