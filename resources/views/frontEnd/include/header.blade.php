@@ -13,7 +13,7 @@
                 <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         @foreach($categories as $category)
-                            <li><a href="{{ route('blog.category') }}"> {{ $category->category_name }}</a></li>
+                            <li><a href="{{ route('blog.category', ['catId'=> $category->id] )}}"> {{ $category->category_name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -24,11 +24,14 @@
         </nav><!-- .navbar -->
 
         <div class="position-relative">
-            <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-            <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-            <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
             <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+            @if( Session::get('userId'))
+                <a href="{{ route('user.logout') }}" class="mx-2 btn btn-dark"> LogOut </a>
+                <a href="{{ route('user.login') }}" class="mx-2 btn btn-dark"> {{ Session::get('userName') }} </a>
+            @else
+                <a href="{{ route('user.register') }}" class="mx-2 btn btn-dark"> Register </a>
+                <a href="{{ route('user.login') }}" class="mx-2 btn btn-dark"> Login </a>
+            @endif
             <i class="bi bi-list mobile-nav-toggle"></i>
 
             <!-- ======= Search Form ======= -->

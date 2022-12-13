@@ -24,9 +24,18 @@ use App\Http\Controllers\BlogController;
 
 Route::get('/', [ZenBlogController::class, 'index'])->name('home');
 Route::get('/post-detail/{slug}', [ZenBlogController::class, 'postDetail'])->name('post.detail');
-Route::get('/blog-category', [ZenBlogController::class, 'blogCategory'])->name('blog.category');
+Route::get('/blog-category/{catId}', [ZenBlogController::class, 'blogCategory'])->name('blog.category');
 Route::get('/about', [ZenBlogController::class, 'about'])->name('about');
 Route::get('/contact', [ZenBlogController::class, 'contact'])->name('contact');
+
+Route::get('/user-register', [ZenBlogController::class, 'userRegister'])->name('user.register');
+Route::post('/user-register', [ZenBlogController::class, 'saveUser'])->name('user.register');
+
+Route::get('/user-login', [ZenBlogController::class, 'userLogin'])->name('user.login');
+Route::post('/user-login', [ZenBlogController::class, 'checkLoginUser'])->name('user.login');
+
+Route::get('/user-logout', [ZenBlogController::class, 'userLogout'])->name('user.logout');
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
