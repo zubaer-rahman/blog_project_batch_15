@@ -10,13 +10,24 @@ class Blog extends Model
     use HasFactory;
     public static $blog, $image, $imgUrl, $imgName, $directory, $str;
     public static function  saveBlog($request){
-        self::$blog = new Blog();
+        if($request->blog_id){
+            self::$blog = Blog::find($request->blog_id);
+        } else {
+            self::$blog = new Blog();
+        }
         self::$blog->category_id = $request->category_id;
         self::$blog->author_id = $request->author_id;
         self::$blog->title = $request->title;
         self::$blog->slug = self::makeSlug($request);
         self::$blog->description = $request->description;
-        self::$blog->image = self::saveImage($request);
+        if($request->file('image')){
+            if($request->blog_id){
+                if(file_exists(self::$blog->image)){
+                    unlink(self::$blog->image);
+                }
+            }
+            self::$blog->image = self::saveImage($request);
+        }
         self::$blog->date = $request->date;
         self::$blog->blog_type = $request->blog_type;
         self::$blog->status = $request->status;

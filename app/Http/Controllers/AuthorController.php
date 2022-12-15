@@ -12,13 +12,10 @@ class AuthorController extends Controller
     }
     public function saveAuthor(Request $request){
         Author::saveAuthor($request);
-        return back();
+        return redirect(route('author'));
     }
     public function editAuthor(Request $request){
         return view('admin.author.edit-author', ['author'=>Author::find($request->author_id)]);
     }
-    public function updateAuthor(Request $request){
-        Author::updateAuthor($request);
-        return back();
-    }
+
 }

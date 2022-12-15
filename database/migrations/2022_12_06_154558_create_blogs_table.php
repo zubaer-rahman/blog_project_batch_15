@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->nullable();
             $table->text('description');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->date('date');
             $table->string('blog_type');
             $table->tinyInteger('status')->default(1);

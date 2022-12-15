@@ -43,13 +43,19 @@
                                             <td>{{ $blog->blog_type }}</td>
                                             <td>{{ $blog->status==1? 'published': 'unpublished' }}</td>
                                             <td>
-                                                <a href="{{ route('status', ['id'=>$blog->id]) }}" class="btn btn-warning btn-sm"> {{$blog->status==0? 'published':'unpublished'}} </a>
-                                                <a href="" class="btn btn-primary btn-sm"> Edit </a>
-                                                <form action="{{ route('delete.blog') }}" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="blog_id" value="{{ $blog->id }}">
-                                                    <button type="submit" onclick="return confirm('Are you sure? wanna delete this!')" class="btn btn-danger btn-sm"> Delete </button>
-                                                </form>
+                                                <div class="d-flex">
+                                                    <a href="{{ route('status', ['id'=>$blog->id]) }}" class="btn btn-warning btn-sm"> {{$blog->status==0? 'published':'unpublished'}} </a>
+                                                     <form action="{{ route('edit.blog') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+                                                        <button type="submit" class="btn btn-primary btn-sm me-2 ms-2"> Edit </button>
+                                                    </form>
+                                                    <form action="{{ route('delete.blog') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+                                                        <button type="submit" onclick="return confirm('Are you sure? wanna delete this!')" class="btn btn-danger btn-sm"> Delete </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>

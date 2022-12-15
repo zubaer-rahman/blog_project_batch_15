@@ -53,7 +53,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/add-blog', [ BlogController::class, 'index'])->name('add.blog');
     Route::post('/new-blog', [ BlogController::class, 'saveBlog'])->name('new.blog');
     Route::get('/manage-blog', [ BlogController::class, 'manageBlog'])->name('manage.blog');
-    Route::get('/edit-blog', [ BlogController::class, 'editBlog'])->name('edit.blog');
+    Route::post('/edit-blog', [ BlogController::class, 'editBlog'])->name('edit.blog');
     Route::get('/status/{id}', [ BlogController::class, 'status'])->name('status');
     Route::post('/delete.blog', [ BlogController::class, 'deleteBlog'])->name('delete.blog');
 });

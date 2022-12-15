@@ -10,7 +10,7 @@
                             <h5 class="mb-0">Edit Author</h5>
                         </div>
                         <hr/>
-                        <form action="{{ route('update.author') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('new.author') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="author_id" value="{{$author->id}}">
                             <div class="row">

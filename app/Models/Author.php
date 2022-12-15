@@ -10,9 +10,20 @@ class Author extends Model
     use HasFactory;
     public static $author, $image, $imgName, $directory, $imgUrl;
     public static function saveAuthor($request){
-        self::$author = new Author();
+        if($request->author_id){
+            self::$author = Author::find($request->author_id);
+        } else {
+            self::$author = new Author();
+        }
         self::$author->author_name = $request->author_name;
-        self::$author->author_image = self::saveImage($request);
+        if($request->file('author_image')){
+            if($request->author_id){
+                if(file_exists(self::$author->author_image)){
+                    unlink(self::$author->author_image);
+                }
+            }
+            self::$author->author_image = self::saveImage($request);
+        }
         self::$author->save();
     }
     public static function saveImage($request){

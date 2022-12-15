@@ -17,7 +17,7 @@ class BlogController extends Controller
     }
     public function saveBlog(Request $request){
         Blog::saveBlog($request);
-        return back();
+        return redirect(route('manage.blog'));
     }
     public function manageBlog(){
         return view('admin.blog.manage-blog', [
@@ -28,11 +28,15 @@ class BlogController extends Controller
                           ->get()
         ]);
     }
-    public function editBlog(){
-        return view('admin.blog.edit-blog');
+    public function editBlog(Request $request){
+        return view('admin.blog.edit-blog',[
+            'blog'=> Blog::find($request->blog_id),
+            'categories'=> Category::where('status', 1)->get(),
+            'authors'=> Author::all()
+        ]);
     }
-    public function status($id){
-        $blog = Blog::find($id);
+    public function status($blogId){
+        $blog = Blog::find($blogId);
         if($blog->status == 0){
             $blog->status = 1;
         } else $blog->status = 0;
